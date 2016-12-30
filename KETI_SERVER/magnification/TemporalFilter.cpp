@@ -75,7 +75,7 @@ void idealFilter(const Mat &src, Mat &dst , double cutoffLo, double cutoffHi, do
         cutoffLo += 0.01;
 
     int channelNrs = src.channels();
-    Mat channels[channelNrs];
+    Mat channels[6];
     split(src, channels);
 
     // Apply filter on each channel individually

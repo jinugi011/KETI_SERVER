@@ -303,7 +303,7 @@ void Magnificator::waveletMagnify() {
 
     Mat input, output, motion;
     vector< vector<Mat> > inputPyramid;
-    int pChannels;
+    int pChannels = 0;
 
     // Process every frame in buffer that wasn't magnified yet
     while(currentFrame < pBufferElements) {
@@ -315,7 +315,7 @@ void Magnificator::waveletMagnify() {
 
         // Convert input image to 32bit float
         pChannels = input.channels();
-        Mat inputChannels[pChannels];
+        Mat inputChannels[6];
         if(!(imgProcFlags->grayscaleOn || pChannels <= 2)) {
             input.convertTo(input, CV_32FC3, 1.0/255.0f);
             // Convert color images to YCrCb
