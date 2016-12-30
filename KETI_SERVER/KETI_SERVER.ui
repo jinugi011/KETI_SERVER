@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KETI_SERVERClass</class>
+ <widget class="QMainWindow" name="KETI_SERVERClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1238</width>
+    <height>934</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>KETI_SERVER</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="btn_stream">
+    <property name="geometry">
+     <rect>
+      <x>1130</x>
+      <y>10</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stream Out</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_exit">
+    <property name="geometry">
+     <rect>
+      <x>1130</x>
+      <y>70</y>
+      <width>101</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>EXIT</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="framevideo">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1111</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_video_output">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>1111</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1238</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFILE_OPEN">
+    <property name="title">
+     <string>FILE OPEN</string>
+    </property>
+    <addaction name="actionTOP"/>
+    <addaction name="actionOPEN_BOTTOM"/>
+    <addaction name="actionOPEN_LEFT"/>
+    <addaction name="actionOPEN_RIGHT"/>
+    <addaction name="actionOPEN_FRONT"/>
+    <addaction name="actionOPEN_BACK"/>
+    <addaction name="separator"/>
+    <addaction name="actionEXIT"/>
+   </widget>
+   <addaction name="menuFILE_OPEN"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionTOP">
+   <property name="text">
+    <string>OPEN TOP</string>
+   </property>
+  </action>
+  <action name="actionOPEN_BOTTOM">
+   <property name="text">
+    <string>OPEN BOTTOM</string>
+   </property>
+  </action>
+  <action name="actionOPEN_LEFT">
+   <property name="text">
+    <string>OPEN LEFT</string>
+   </property>
+  </action>
+  <action name="actionOPEN_RIGHT">
+   <property name="text">
+    <string>OPEN RIGHT</string>
+   </property>
+  </action>
+  <action name="actionOPEN_FRONT">
+   <property name="text">
+    <string>OPEN FRONT</string>
+   </property>
+  </action>
+  <action name="actionOPEN_BACK">
+   <property name="text">
+    <string>OPEN BACK</string>
+   </property>
+  </action>
+  <action name="actionEXIT">
+   <property name="text">
+    <string>EXIT</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="KETI_SERVER.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>btn_exit</sender>
+   <signal>clicked()</signal>
+   <receiver>KETI_SERVERClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1170</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>618</x>
+     <y>466</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEXIT</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>KETI_SERVERClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>618</x>
+     <y>466</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
