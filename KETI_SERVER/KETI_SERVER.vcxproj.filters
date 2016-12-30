@@ -38,6 +38,27 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Header Files\ui">
+      <UniqueIdentifier>{a0760dbf-97f9-4307-92d0-80e47c4183f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\orther">
+      <UniqueIdentifier>{cb11a354-bb9a-4795-a774-c684b1ce9d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\helper">
+      <UniqueIdentifier>{edac9e1c-b932-4c8d-9cec-a0be709c2974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\helper">
+      <UniqueIdentifier>{f2f28f5c-0f67-4744-bfa9-9ca72a65fa36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\magnification">
+      <UniqueIdentifier>{7c336832-6557-4f2a-be67-52aa194340bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\magnification">
+      <UniqueIdentifier>{47e777d9-a835-4fe9-9c96-e109275088a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ui">
+      <UniqueIdentifier>{d8077b74-7892-4a3a-a307-f485ea91ca58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -55,6 +76,30 @@
     <ClCompile Include="GeneratedFiles\qrc_KETI_SERVER.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FrameLabel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FrameLabel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="helper\MatToQImage.cpp">
+      <Filter>Source Files\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="helper\SharedImageBuffer.cpp">
+      <Filter>Source Files\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="magnification\Magnificator.cpp">
+      <Filter>Source Files\magnification</Filter>
+    </ClCompile>
+    <ClCompile Include="magnification\SpatialFilter.cpp">
+      <Filter>Source Files\magnification</Filter>
+    </ClCompile>
+    <ClCompile Include="magnification\TemporalFilter.cpp">
+      <Filter>Source Files\magnification</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameLabel.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="KETI_SERVER.h">
@@ -66,6 +111,9 @@
     <CustomBuild Include="KETI_SERVER.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="FrameLabel.h">
+      <Filter>Header Files\ui</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_KETI_SERVER.h">
@@ -73,6 +121,30 @@
     </ClInclude>
     <ClInclude Include="use_opencv.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="other\Buffer.h">
+      <Filter>Header Files\orther</Filter>
+    </ClInclude>
+    <ClInclude Include="other\Config.h">
+      <Filter>Header Files\orther</Filter>
+    </ClInclude>
+    <ClInclude Include="other\Structures.h">
+      <Filter>Header Files\orther</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\MatToQImage.h">
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\SharedImageBuffer.h">
+      <Filter>Header Files\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="magnification\Magnificator.h">
+      <Filter>Header Files\magnification</Filter>
+    </ClInclude>
+    <ClInclude Include="magnification\SpatialFilter.h">
+      <Filter>Header Files\magnification</Filter>
+    </ClInclude>
+    <ClInclude Include="magnification\TemporalFilter.h">
+      <Filter>Header Files\magnification</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

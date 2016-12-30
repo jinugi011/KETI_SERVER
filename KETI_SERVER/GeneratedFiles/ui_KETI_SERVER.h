@@ -13,7 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -38,8 +38,8 @@ public:
     QWidget *centralWidget;
     QPushButton *btn_stream;
     QPushButton *btn_exit;
-    QFrame *framevideo;
-    QFrame *frame_video_output;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout;
     QMenuBar *menuBar;
     QMenu *menuFILE_OPEN;
     QToolBar *mainToolBar;
@@ -72,16 +72,14 @@ public:
         btn_exit = new QPushButton(centralWidget);
         btn_exit->setObjectName(QStringLiteral("btn_exit"));
         btn_exit->setGeometry(QRect(1130, 70, 101, 61));
-        framevideo = new QFrame(centralWidget);
-        framevideo->setObjectName(QStringLiteral("framevideo"));
-        framevideo->setGeometry(QRect(10, 10, 1111, 431));
-        framevideo->setFrameShape(QFrame::StyledPanel);
-        framevideo->setFrameShadow(QFrame::Raised);
-        frame_video_output = new QFrame(centralWidget);
-        frame_video_output->setObjectName(QStringLiteral("frame_video_output"));
-        frame_video_output->setGeometry(QRect(10, 450, 1111, 431));
-        frame_video_output->setFrameShape(QFrame::StyledPanel);
-        frame_video_output->setFrameShadow(QFrame::Raised);
+        horizontalLayoutWidget = new QWidget(centralWidget);
+        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(10, 10, 1111, 231));
+        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         KETI_SERVERClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(KETI_SERVERClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));

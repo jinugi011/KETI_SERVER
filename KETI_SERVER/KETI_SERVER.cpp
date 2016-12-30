@@ -9,10 +9,7 @@ KETI_SERVER::KETI_SERVER(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-
-
 	//이벤트 처리 
-
 	//InitMain();
 
 }
