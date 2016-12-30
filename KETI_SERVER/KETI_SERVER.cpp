@@ -13,11 +13,7 @@ KETI_SERVER::KETI_SERVER(QWidget *parent)
 
 	//이벤트 처리 
 
-	InitMain();
-
-	
-	
-
+	//InitMain();
 
 }
 
