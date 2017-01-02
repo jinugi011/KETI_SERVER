@@ -37,10 +37,10 @@
 // OpenCV
 #include <opencv2/highgui/highgui.hpp>
 // Local
-#include "main/other/Config.h"
-#include "main/other/Structures.h"
-#include "main/helper/MatToQImage.h"
-#include "main/magnification/Magnificator.h"
+#include "other/Config.h"
+#include "other/Structures.h"
+#include "helper/MatToQImage.h"
+#include "magnification/Magnificator.h"
 
 using namespace cv;
 

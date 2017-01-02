@@ -6,7 +6,7 @@
 /*      Joseph Pan      <https://github.com/wzpan/QtEVM>                            */
 /*      Nick D'Ademo    <https://github.com/nickdademo/qt-opencv-multithreaded>     */
 /*                                                                                  */
-/* Realtime-Video-Magnification->CaptureThread.h                                    */
+/* Realtime-Video-Magnification->FrameLabel.h                                       */
 /*                                                                                  */
 /* This program is free software: you can redistribute it and/or modify             */
 /* it under the terms of the GNU General Public License as published by             */
@@ -22,62 +22,48 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#ifndef CAPTURETHREAD_H
-#define CAPTURETHREAD_H
+#ifndef FRAMELABEL_H
+#define FRAMELABEL_H
 
 // Qt
-#include <QtCore/QTime>
-#include <QtCore/QThread>
-// OpenCV
-#include <opencv2/highgui/highgui.hpp>
+#include <QtCore/QObject>
+#include <QtCore/QPoint>
+#include <QtCore/QRect>
+#include <QLabel>
+#include <QMenu>
+#include <QtGui/QPainter>
+#include <QtGui/QMouseEvent>
 // Local
-#include "helper/SharedImageBuffer.h"
-#include "other/Config.h"
 #include "other/Structures.h"
 
-using namespace cv;
-
-class ImageBuffer;
-
-class CaptureThread : public QThread
+class FrameLabel : public QLabel
 {
     Q_OBJECT
 
     public:
-        CaptureThread(SharedImageBuffer *sharedImageBuffer, int deviceNumber,
-                      bool dropFrameIfBufferFull, int width, int height, int fpsLimit);
-        void stop();
-        bool connectToCamera();
-        bool disconnectCamera();
-        bool isCameraConnected();
-        int getInputSourceWidth();
-        int getInputSourceHeight();
+        FrameLabel(QWidget *parent = 0);
+        ~FrameLabel();
+        void setMouseCursorPos(QPoint);
+        QPoint getMouseCursorPos();
+        QMenu *menu;
 
     private:
-        void updateFPS(int);
-        SharedImageBuffer *sharedImageBuffer;
-        VideoCapture cap;
-        Mat grabbedFrame;
-        QTime t;
-        QMutex doStopMutex;
-        QQueue<int> fps;
-        struct ThreadStatisticsData statsData;
-        volatile bool doStop;
-        int captureTime;
-        int sampleNumber;
-        int fpsSum;
-        bool dropFrameIfBufferFull;
-        int deviceNumber;
-        int width;
-        int height;
-        int fpsGoal;
+        void createContextMenu();
+        MouseData mouseData;
+        QPoint startPoint;
+        QPoint mouseCursorPos;
+        bool drawBox;
+        QRect *box;
 
     protected:
-        void run();
+        void mouseMoveEvent(QMouseEvent *ev);
+        void mousePressEvent(QMouseEvent *ev);
+        void mouseReleaseEvent(QMouseEvent *ev);
+        void paintEvent(QPaintEvent *ev);
 
     signals:
-        void updateStatisticsInGUI(struct ThreadStatisticsData);
-        void updateFramerate(double FPS);
+        void newMouseData(struct MouseData mouseData);
+        void onMouseMoveEvent();
 };
 
-#endif // CAPTURETHREAD_H
+#endif // FRAMELABEL_H

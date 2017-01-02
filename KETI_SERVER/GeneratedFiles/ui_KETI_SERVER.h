@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -40,6 +41,7 @@ public:
     QPushButton *btn_exit;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
+    QLabel *frameLabel;
     QMenuBar *menuBar;
     QMenu *menuFILE_OPEN;
     QToolBar *mainToolBar;
@@ -80,6 +82,13 @@ public:
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        frameLabel = new QLabel(horizontalLayoutWidget);
+        frameLabel->setObjectName(QStringLiteral("frameLabel"));
+        frameLabel->setMouseTracking(true);
+        frameLabel->setFrameShape(QFrame::Box);
+
+        horizontalLayout->addWidget(frameLabel);
+
         KETI_SERVERClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(KETI_SERVERClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -123,6 +132,7 @@ public:
         actionEXIT->setText(QApplication::translate("KETI_SERVERClass", "EXIT", Q_NULLPTR));
         btn_stream->setText(QApplication::translate("KETI_SERVERClass", "Stream Out", Q_NULLPTR));
         btn_exit->setText(QApplication::translate("KETI_SERVERClass", "EXIT", Q_NULLPTR));
+        frameLabel->setText(QString());
         menuFILE_OPEN->setTitle(QApplication::translate("KETI_SERVERClass", "FILE OPEN", Q_NULLPTR));
     } // retranslateUi
 

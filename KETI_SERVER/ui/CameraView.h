@@ -6,7 +6,7 @@
 /*      Joseph Pan      <https://github.com/wzpan/QtEVM>                            */
 /*      Nick D'Ademo    <https://github.com/nickdademo/qt-opencv-multithreaded>     */
 /*                                                                                  */
-/* Realtime-Video-Magnification->CaptureThread.h                                    */
+/* Realtime-Video-Magnification->CameraView.h                                       */
 /*                                                                                  */
 /* This program is free software: you can redistribute it and/or modify             */
 /* it under the terms of the GNU General Public License as published by             */
@@ -22,62 +22,73 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#ifndef CAPTURETHREAD_H
-#define CAPTURETHREAD_H
+#ifndef CAMERAVIEW_H
+#define CAMERAVIEW_H
 
 // Qt
-#include <QtCore/QTime>
-#include <QtCore/QThread>
-// OpenCV
-#include <opencv2/highgui/highgui.hpp>
+#include <QDebug>
+#include <QFileDialog>
+#include <QMessageBox>
 // Local
-#include "helper/SharedImageBuffer.h"
-#include "other/Config.h"
+#include "threads/CaptureThread.h"
+#include "threads/ProcessingThread.h"
 #include "other/Structures.h"
+#include "helper/SharedImageBuffer.h"
+#include "ui/MagnifyOptions.h"
+#include "ui/FrameLabel.h"
 
-using namespace cv;
+namespace Ui {
+    class CameraView;
+}
 
-class ImageBuffer;
-
-class CaptureThread : public QThread
+class CameraView : public QWidget
 {
     Q_OBJECT
 
     public:
-        CaptureThread(SharedImageBuffer *sharedImageBuffer, int deviceNumber,
-                      bool dropFrameIfBufferFull, int width, int height, int fpsLimit);
-        void stop();
-        bool connectToCamera();
-        bool disconnectCamera();
-        bool isCameraConnected();
-        int getInputSourceWidth();
-        int getInputSourceHeight();
+        explicit CameraView(QWidget *parent, int deviceNumber, SharedImageBuffer *sharedImageBuffer);
+        ~CameraView();
+        bool connectToCamera(bool dropFrame, int capThreadPrio, int procThreadPrio, int width, int height, int fps);
+        void setCodec(int codec);
 
     private:
-        void updateFPS(int);
+        Ui::CameraView *ui;
+        ProcessingThread *processingThread;
+        CaptureThread *captureThread;
         SharedImageBuffer *sharedImageBuffer;
-        VideoCapture cap;
-        Mat grabbedFrame;
-        QTime t;
-        QMutex doStopMutex;
-        QQueue<int> fps;
-        struct ThreadStatisticsData statsData;
-        volatile bool doStop;
-        int captureTime;
-        int sampleNumber;
-        int fpsSum;
-        bool dropFrameIfBufferFull;
+        ImageProcessingFlags imageProcessingFlags;
+        void stopCaptureThread();
+        void stopProcessingThread();
         int deviceNumber;
-        int width;
-        int height;
-        int fpsGoal;
+        bool isCameraConnected;
+        MagnifyOptions *magnifyOptionsTab;
+        FrameLabel *originalFrame;
+        void handleOriginalWindow(bool doEmit);
+        QString getFormattedTime(int timeInMSeconds);
+        int codec;
 
-    protected:
-        void run();
+    public slots:
+        void newMouseData(struct MouseData mouseData);
+        void newMouseDataOriginalFrame(struct MouseData mouseData);
+        void updateMouseCursorPosLabel();
+        void updateMouseCursorPosLabelOriginalFrame();
+        void clearImageBuffer();
+        void frameWritten(int frames);
+
+    private slots:
+        void updateFrame(const QImage &frame);
+        void updateOriginalFrame(const QImage &frame);
+        void updateProcessingThreadStats(struct ThreadStatisticsData statData);
+        void updateCaptureThreadStats(struct ThreadStatisticsData statData);
+        void handleContextMenuAction(QAction *action);
+        void hideSettings();
+        void record();
+        void selectButton_action();
+        void handleTabChange(int index);
 
     signals:
-        void updateStatisticsInGUI(struct ThreadStatisticsData);
-        void updateFramerate(double FPS);
+        void newImageProcessingFlags(struct ImageProcessingFlags imageProcessingFlags);
+        void setROI(QRect roi);
 };
 
-#endif // CAPTURETHREAD_H
+#endif // CAMERAVIEW_H

@@ -6,7 +6,7 @@
 /*      Joseph Pan      <https://github.com/wzpan/QtEVM>                            */
 /*      Nick D'Ademo    <https://github.com/nickdademo/qt-opencv-multithreaded>     */
 /*                                                                                  */
-/* Realtime-Video-Magnification->CaptureThread.h                                    */
+/* Realtime-Video-Magnification->CameraConnectDialog.h                              */
 /*                                                                                  */
 /* This program is free software: you can redistribute it and/or modify             */
 /* it under the terms of the GNU General Public License as published by             */
@@ -22,62 +22,59 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#ifndef CAPTURETHREAD_H
-#define CAPTURETHREAD_H
+#ifndef CAMERACONNECTDIALOG_H
+#define CAMERACONNECTDIALOG_H
 
 // Qt
-#include <QtCore/QTime>
+#include <QDialog>
+#include <QFileDialog>
 #include <QtCore/QThread>
+#include <QMessageBox>
+#include <QDebug>
+// Local
+#include "other/Config.h"
 // OpenCV
 #include <opencv2/highgui/highgui.hpp>
-// Local
-#include "helper/SharedImageBuffer.h"
-#include "other/Config.h"
-#include "other/Structures.h"
 
-using namespace cv;
+namespace Ui {
+class CameraConnectDialog;
+}
 
-class ImageBuffer;
-
-class CaptureThread : public QThread
+class CameraConnectDialog : public QDialog
 {
     Q_OBJECT
-
+    
     public:
-        CaptureThread(SharedImageBuffer *sharedImageBuffer, int deviceNumber,
-                      bool dropFrameIfBufferFull, int width, int height, int fpsLimit);
-        void stop();
-        bool connectToCamera();
-        bool disconnectCamera();
-        bool isCameraConnected();
-        int getInputSourceWidth();
-        int getInputSourceHeight();
+        explicit CameraConnectDialog(QWidget *parent=0);
+        ~CameraConnectDialog();
+        void setDeviceNumber();
+        void setImageBufferSize();
+        int getDeviceNumber();
+        int getResolutionWidth();
+        int getResolutionHeight();
+        int getFpsNumber();
+        int getImageBufferSize();
+        bool getDropFrameCheckBoxState();
+        bool getPgDevCheckBoxState();
+        int getCaptureThreadPrio();
+        int getProcessingThreadPrio();
+        int getPlayerThreadPrio();
+        bool isFile();
+        bool isCamera();
+        QString getFilepath();
+        QString getTabLabel();
 
     private:
-        void updateFPS(int);
-        SharedImageBuffer *sharedImageBuffer;
-        VideoCapture cap;
-        Mat grabbedFrame;
-        QTime t;
-        QMutex doStopMutex;
-        QQueue<int> fps;
-        struct ThreadStatisticsData statsData;
-        volatile bool doStop;
-        int captureTime;
-        int sampleNumber;
-        int fpsSum;
-        bool dropFrameIfBufferFull;
-        int deviceNumber;
-        int width;
-        int height;
-        int fpsGoal;
+        Ui::CameraConnectDialog *ui;
+        int countCameraDevices();
 
-    protected:
-        void run();
+    public slots:
+        void resetToDefaults();
 
-    signals:
-        void updateStatisticsInGUI(struct ThreadStatisticsData);
-        void updateFramerate(double FPS);
+    private slots:
+        void toggleCameraGroupBox(bool state);
+        void toggleFileGroupBox(bool state);
+        void openButton_clicked();
 };
 
-#endif // CAPTURETHREAD_H
+#endif // CAMERACONNECTDIALOG_H

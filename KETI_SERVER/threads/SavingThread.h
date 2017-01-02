@@ -31,8 +31,8 @@
 // OpenCV
 #include <opencv2/highgui/highgui.hpp>
 // Local
-#include "main/magnification/Magnificator.h"
-#include "main/other/Structures.h"
+#include "magnification/Magnificator.h"
+#include "other/Structures.h"
 
 using namespace cv;
 

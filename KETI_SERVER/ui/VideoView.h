@@ -6,7 +6,7 @@
 /*      Joseph Pan      <https://github.com/wzpan/QtEVM>                            */
 /*      Nick D'Ademo    <https://github.com/nickdademo/qt-opencv-multithreaded>     */
 /*                                                                                  */
-/* Realtime-Video-Magnification->CaptureThread.h                                    */
+/* Realtime-Video-Magnification->VideoView.h                                        */
 /*                                                                                  */
 /* This program is free software: you can redistribute it and/or modify             */
 /* it under the terms of the GNU General Public License as published by             */
@@ -22,62 +22,75 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#ifndef CAPTURETHREAD_H
-#define CAPTURETHREAD_H
+#ifndef VIDEOVIEW_H
+#define VIDEOVIEW_H
 
 // Qt
-#include <QtCore/QTime>
-#include <QtCore/QThread>
-// OpenCV
-#include <opencv2/highgui/highgui.hpp>
+#include <QFileInfo>
+#include <QMessageBox>
+#include <QFileDialog>
 // Local
-#include "helper/SharedImageBuffer.h"
-#include "other/Config.h"
+#include "ui/MagnifyOptions.h"
 #include "other/Structures.h"
+#include "threads/PlayerThread.h"
+#include "FrameLabel.h"
+#include "threads/SavingThread.h"
+namespace Ui {
+    class VideoView;
+}
 
-using namespace cv;
-
-class ImageBuffer;
-
-class CaptureThread : public QThread
+class VideoView : public QWidget
 {
     Q_OBJECT
 
-    public:
-        CaptureThread(SharedImageBuffer *sharedImageBuffer, int deviceNumber,
-                      bool dropFrameIfBufferFull, int width, int height, int fpsLimit);
-        void stop();
-        bool connectToCamera();
-        bool disconnectCamera();
-        bool isCameraConnected();
-        int getInputSourceWidth();
-        int getInputSourceHeight();
+public:
+    explicit VideoView(QWidget *parent, QString filepath);
+    ~VideoView();
+    bool loadVideo(int threadPrio, int width, int height, double fps);
+    void setCodec(int codec);
+    void set_useVideoCodec(bool use);
 
-    private:
-        void updateFPS(int);
-        SharedImageBuffer *sharedImageBuffer;
-        VideoCapture cap;
-        Mat grabbedFrame;
-        QTime t;
-        QMutex doStopMutex;
-        QQueue<int> fps;
-        struct ThreadStatisticsData statsData;
-        volatile bool doStop;
-        int captureTime;
-        int sampleNumber;
-        int fpsSum;
-        bool dropFrameIfBufferFull;
-        int deviceNumber;
-        int width;
-        int height;
-        int fpsGoal;
+private:
+    Ui::VideoView *ui;
+    QFileInfo file;
+    QString filename;
+    PlayerThread *playerThread;
+    ImageProcessingFlags imageProcessingFlags;
+    bool isFileLoaded;
+    MagnifyOptions *magnifyOptionsTab;
+    void stopPlayerThread();
+    QString getFormattedTime(int time);
+    void handleOriginalWindow(bool doEmit);
+    FrameLabel *originalFrame;
+    SavingThread *vidSaver;
+    int codec;
+    bool useVideoCodec;
 
-    protected:
-        void run();
+public slots:
+    void newMouseData(struct MouseData mouseData);
+    void newMouseDataOriginalFrame(struct MouseData mouseData);
+    void updateMouseCursorPosLabel();
+    void updateMouseCursorPosLabelOriginalFrame();
+    void endOfFrame_action();
+    void endOfSaving_action();
+    void updateProgressBar(int frame);
 
-    signals:
-        void updateStatisticsInGUI(struct ThreadStatisticsData);
-        void updateFramerate(double FPS);
+private slots:
+    void updateFrame(const QImage &frame);
+    void updateOriginalFrame(const QImage &frame);
+    void updatePlayerThreadStats(struct ThreadStatisticsData statData);
+    void handleContextMenuAction(QAction *action);
+    void play();
+    void stop();
+    void pause();
+    void setTime();
+    void hideSettings();
+    void save_action();
+    void handleTabChange(int index);
+
+signals:
+    void newImageProcessingFlags(struct ImageProcessingFlags imageProcessingFlags);
+    void setROI(QRect roi);
 };
 
-#endif // CAPTURETHREAD_H
+#endif // VIDEOVIEW_H

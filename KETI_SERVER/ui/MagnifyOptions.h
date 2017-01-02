@@ -6,7 +6,7 @@
 /*      Joseph Pan      <https://github.com/wzpan/QtEVM>                            */
 /*      Nick D'Ademo    <https://github.com/nickdademo/qt-opencv-multithreaded>     */
 /*                                                                                  */
-/* Realtime-Video-Magnification->CaptureThread.h                                    */
+/* Realtime-Video-Magnification->MagnifyOptions.h                                   */
 /*                                                                                  */
 /* This program is free software: you can redistribute it and/or modify             */
 /* it under the terms of the GNU General Public License as published by             */
@@ -22,62 +22,56 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#ifndef CAPTURETHREAD_H
-#define CAPTURETHREAD_H
+#ifndef MAGNIFYOPTIONS_H
+#define MAGNIFYOPTIONS_H
 
 // Qt
-#include <QtCore/QTime>
-#include <QtCore/QThread>
-// OpenCV
-#include <opencv2/highgui/highgui.hpp>
+#include <QWidget>
 // Local
-#include "helper/SharedImageBuffer.h"
-#include "other/Config.h"
+#include "external/qxtSlider/qxtspanslider.h"
 #include "other/Structures.h"
+#include "other/Config.h"
 
-using namespace cv;
+namespace Ui {
+class MagnifyOptions;
+}
 
-class ImageBuffer;
-
-class CaptureThread : public QThread
+class MagnifyOptions : public QWidget
 {
     Q_OBJECT
 
-    public:
-        CaptureThread(SharedImageBuffer *sharedImageBuffer, int deviceNumber,
-                      bool dropFrameIfBufferFull, int width, int height, int fpsLimit);
-        void stop();
-        bool connectToCamera();
-        bool disconnectCamera();
-        bool isCameraConnected();
-        int getInputSourceWidth();
-        int getInputSourceHeight();
+public:
+    explicit MagnifyOptions(QWidget *parent = 0);
+    ~MagnifyOptions();
+    ImageProcessingSettings getSettings();
+    ImageProcessingFlags getFlags();
+    void toggleGrayscale(bool isActive);
 
-    private:
-        void updateFPS(int);
-        SharedImageBuffer *sharedImageBuffer;
-        VideoCapture cap;
-        Mat grabbedFrame;
-        QTime t;
-        QMutex doStopMutex;
-        QQueue<int> fps;
-        struct ThreadStatisticsData statsData;
-        volatile bool doStop;
-        int captureTime;
-        int sampleNumber;
-        int fpsSum;
-        bool dropFrameIfBufferFull;
-        int deviceNumber;
-        int width;
-        int height;
-        int fpsGoal;
+private:
+    Ui::MagnifyOptions *ui;
+    QxtSpanSlider *doubleSlider;
+    ImageProcessingSettings imgProcSettings;
+    ImageProcessingFlags imgProcFlags;
 
-    protected:
-        void run();
+public slots:
+    void setMaxLevel(int level);
 
-    signals:
-        void updateStatisticsInGUI(struct ThreadStatisticsData);
-        void updateFramerate(double FPS);
+private slots:
+    void updateFlagsFromOptionsTab();
+    void updateSettingsFromOptionsTab();
+    void reset();
+    void reset(int);
+    // Internal slots supporting GUI
+    void convertFromSpinBox(double val);
+    void convertFromSlider(int val);
+    void applyColorInterface();
+    void applyMotionInterface();
+
+signals:
+    void newImageProcessingFlags(struct ImageProcessingFlags);
+    void newImageProcessingSettings(struct ImageProcessingSettings);
+
+
 };
 
-#endif // CAPTURETHREAD_H
+#endif // MAGNIFYOPTIONS_H

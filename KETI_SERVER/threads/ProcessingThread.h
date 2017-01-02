@@ -34,12 +34,12 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 // Local
-#include "main/other/Structures.h"
-#include "main/other/Config.h"
-#include "main/other/Buffer.h"
-#include "main/helper/MatToQImage.h"
-#include "main/helper/SharedImageBuffer.h"
-#include "main/magnification/Magnificator.h"
+#include "other/Structures.h"
+#include "other/Config.h"
+#include "other/Buffer.h"
+#include "helper/MatToQImage.h"
+#include "helper/SharedImageBuffer.h"
+#include "magnification/Magnificator.h"
 
 using namespace cv;
 

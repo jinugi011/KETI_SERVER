@@ -59,6 +59,12 @@
     <Filter Include="Source Files\ui">
       <UniqueIdentifier>{d8077b74-7892-4a3a-a307-f485ea91ca58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\external">
+      <UniqueIdentifier>{b3e9cc3b-7cf7-44af-9908-c634462cf23a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\external">
+      <UniqueIdentifier>{873cadaa-83b5-4e9f-9e8d-bb34bd124abf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -100,6 +106,57 @@
     <ClCompile Include="FrameLabel.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
+    <ClCompile Include="ui\CameraConnectDialog.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\CameraView.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\MagnifyOptions.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CameraConnectDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CameraConnectDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CameraView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CameraView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MagnifyOptions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MagnifyOptions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qxtspanslider.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qxtspanslider.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qxtspanslider_p.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qxtspanslider_p.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="external\qxtSlider\qxtglobal.cpp">
+      <Filter>Source Files\external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\qxtSlider\qxtspanslider.cpp">
+      <Filter>Source Files\external</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="KETI_SERVER.h">
@@ -113,6 +170,36 @@
     </CustomBuild>
     <CustomBuild Include="FrameLabel.h">
       <Filter>Header Files\ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\VideoView.h">
+      <Filter>Source Files\ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\CameraConnectDialog.h">
+      <Filter>Header Files\ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\CameraView.h">
+      <Filter>Header Files\ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\MagnifyOptions.h">
+      <Filter>Header Files\ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\CameraConnectDialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\CameraView.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\MagnifyOptions.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\VideoView.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="external\qxtSlider\qxtspanslider.h">
+      <Filter>Header Files\external</Filter>
+    </CustomBuild>
+    <CustomBuild Include="external\qxtSlider\qxtspanslider_p.h">
+      <Filter>Header Files\external</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +232,24 @@
     </ClInclude>
     <ClInclude Include="magnification\TemporalFilter.h">
       <Filter>Header Files\magnification</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_CameraConnectDialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_CameraView.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_MagnifyOptions.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_VideoView.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="external\qxtSlider\qxtglobal.h">
+      <Filter>Header Files\external</Filter>
+    </ClInclude>
+    <ClInclude Include="external\qxtSlider\qxtnamespace.h">
+      <Filter>Header Files\external</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
