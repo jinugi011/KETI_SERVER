@@ -29,6 +29,13 @@
 #include "qxtnamespace.h"
 #include "qxtglobal.h"
 
+#ifdef HEAP_EXPORTS
+#define HEAP_API __declspec(dllexport)
+#else
+#define HEAP_API __declspec(dllimport)
+#endif
+
+
 class QxtSpanSliderPrivate;
 
 class QXT_GUI_EXPORT QxtSpanSlider : public QSlider
