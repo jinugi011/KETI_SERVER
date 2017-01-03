@@ -22,7 +22,7 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#include "main/threads/SavingThread.h"
+#include "threads/SavingThread.h"
 // Constructor
 SavingThread::SavingThread() : QThread()
 {

@@ -56,14 +56,20 @@
     <Filter Include="Header Files\magnification">
       <UniqueIdentifier>{47e777d9-a835-4fe9-9c96-e109275088a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ui">
-      <UniqueIdentifier>{d8077b74-7892-4a3a-a307-f485ea91ca58}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\external">
       <UniqueIdentifier>{b3e9cc3b-7cf7-44af-9908-c634462cf23a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\external">
       <UniqueIdentifier>{873cadaa-83b5-4e9f-9e8d-bb34bd124abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\threads">
+      <UniqueIdentifier>{fc3e1f85-6465-456c-8149-b2952970a284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\threads">
+      <UniqueIdentifier>{b4bd9771-52cf-46f5-9578-3b4872f69ddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ui">
+      <UniqueIdentifier>{d8077b74-7892-4a3a-a307-f485ea91ca58}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,12 +121,6 @@
     <ClCompile Include="ui\MagnifyOptions.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_VideoView.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_VideoView.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_CameraConnectDialog.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -157,6 +157,51 @@
     <ClCompile Include="external\qxtSlider\qxtspanslider.cpp">
       <Filter>Source Files\external</Filter>
     </ClCompile>
+    <ClCompile Include="ui\VideoView.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VideoView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VideoView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CaptureThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CaptureThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlayerThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlayerThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ProcessingThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ProcessingThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SavingThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SavingThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\SavingThread.cpp">
+      <Filter>Source Files\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\ProcessingThread.cpp">
+      <Filter>Source Files\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\PlayerThread.cpp">
+      <Filter>Source Files\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="threads\CaptureThread.cpp">
+      <Filter>Source Files\threads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="KETI_SERVER.h">
@@ -170,9 +215,6 @@
     </CustomBuild>
     <CustomBuild Include="FrameLabel.h">
       <Filter>Header Files\ui</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ui\VideoView.h">
-      <Filter>Source Files\ui</Filter>
     </CustomBuild>
     <CustomBuild Include="ui\CameraConnectDialog.h">
       <Filter>Header Files\ui</Filter>
@@ -200,6 +242,21 @@
     </CustomBuild>
     <CustomBuild Include="external\qxtSlider\qxtspanslider_p.h">
       <Filter>Header Files\external</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\VideoView.h">
+      <Filter>Header Files\ui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="threads\CaptureThread.h">
+      <Filter>Header Files\threads</Filter>
+    </CustomBuild>
+    <CustomBuild Include="threads\PlayerThread.h">
+      <Filter>Header Files\threads</Filter>
+    </CustomBuild>
+    <CustomBuild Include="threads\ProcessingThread.h">
+      <Filter>Header Files\threads</Filter>
+    </CustomBuild>
+    <CustomBuild Include="threads\SavingThread.h">
+      <Filter>Header Files\threads</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

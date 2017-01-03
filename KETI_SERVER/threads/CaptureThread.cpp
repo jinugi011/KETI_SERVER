@@ -22,7 +22,7 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#include "main/threads/CaptureThread.h"
+#include "threads/CaptureThread.h"
 
 CaptureThread::CaptureThread(SharedImageBuffer *sharedImageBuffer, int deviceNumber,
                              bool dropFrameIfBufferFull, int width, int height, int fpsLimit)

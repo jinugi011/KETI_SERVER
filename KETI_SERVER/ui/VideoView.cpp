@@ -22,7 +22,7 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#include "main/ui/VideoView.h"
+#include "ui/VideoView.h"
 #include "ui_VideoView.h"
 
 VideoView::VideoView(QWidget *parent, QString filepath) :

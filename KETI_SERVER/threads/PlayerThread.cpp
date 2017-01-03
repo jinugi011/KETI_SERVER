@@ -22,7 +22,7 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#include "main/threads/PlayerThread.h"
+#include "threads/PlayerThread.h"
 
 // Constructor
 PlayerThread::PlayerThread(const std::string filepath, int width, int height, double fps)
@@ -40,8 +40,8 @@ PlayerThread::PlayerThread(const std::string filepath, int width, int height, do
     statsData.averageVidProcessingFPS = 0;
     statsData.nFramesProcessed = 0;
 
-    originalBuffer = std::vector<Mat>();
-    processingBuffer = std::vector<Mat>();
+    originalBuffer = std::vector<Mat>(); //영상 재생 쓰레드 
+    processingBuffer = std::vector<Mat>(); 
 
     imgProcSettings.framerate = fps;
 
@@ -69,7 +69,7 @@ PlayerThread::~PlayerThread()
 void PlayerThread::run()
 {
     // The standard delay time to keep FPS playing rate without processing time
-    double delay = 1000.f/fps;
+    double delay = 1000.f/fps; //딜레이 1초
     qDebug() << "Starting player thread...";
     QTime mTime;
 
@@ -338,6 +338,7 @@ QRect PlayerThread::getCurrentROI()
 }
 
 // Private Slots
+// 이미지 처리 
 void PlayerThread::updateImageProcessingFlags(struct ImageProcessingFlags imgProcessingFlags)
 {
     QMutexLocker locker1(&doStopMutex);
@@ -348,7 +349,6 @@ void PlayerThread::updateImageProcessingFlags(struct ImageProcessingFlags imgPro
     this->imgProcFlags.waveletMagnifyOn = imgProcessingFlags.waveletMagnifyOn;
     locker1.unlock();
     locker2.unlock();
-
     setBufferSize();
 }
 

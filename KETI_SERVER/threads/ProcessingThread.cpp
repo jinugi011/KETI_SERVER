@@ -22,7 +22,7 @@
 /* along with this program.  If not, see <http://www.gnu.org/licenses/>.            */
 /************************************************************************************/
 
-#include "main/threads/ProcessingThread.h"
+#include "threads/ProcessingThread.h"
 
 ProcessingThread::ProcessingThread(SharedImageBuffer *sharedImageBuffer, int deviceNumber) : QThread(),
     sharedImageBuffer(sharedImageBuffer),

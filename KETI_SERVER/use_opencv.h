@@ -34,10 +34,8 @@
 #pragma comment(lib,"opencv_highgui320.lib")
 #pragma comment(lib,"opencv_imgproc320.lib")
 #pragma comment(lib,"opencv_imgcodecs320.lib")
-
 #pragma comment(lib,"opencv_video320.lib")
 #pragma comment(lib,"opencv_videoio320.lib")
-
 #pragma comment(lib,"opencv_aruco320.lib")
 #pragma comment(lib,"opencv_bgsegm320.lib")
 #pragma comment(lib,"opencv_bioinspired320.lib")
@@ -46,10 +44,9 @@
 #pragma comment(lib,"opencv_datasets320.lib")
 #pragma comment(lib,"opencv_dnn320.lib")
 #pragma comment(lib,"opencv_dpm320.lib")
-
-
 #pragma comment(lib,"opencv_stitching320.lib")
 
+//#pragma comment(lib,"KETI_SERVER.lib")
 
 
 #endif
