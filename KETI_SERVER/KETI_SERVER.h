@@ -29,20 +29,20 @@ public:
 
 private:
     Ui::KETI_SERVERClass ui;
-	QFileInfo file;
-	QString filename;
-	PlayerThread *playerThread; //비디오 재생 쓰레드 
-	FrameLabel *originalFrame;
-	SavingThread *vidSaver;
+	QFileInfo file[6];
+	QString filename[6];
+	PlayerThread *playerThread[6]; //비디오 재생 쓰레드 
+	FrameLabel *originalFrame[6];
+	SavingThread *vidSaver[6];
 	bool isFileLoaded;
+	int index;
 
 	ImageProcessingFlags imageProcessingFlags;
 	int codec;
 	bool useVideoCodec;
 	MagnifyOptions *magnifyOptionsTab;
 
-
-	void OpenFile(QString name, int width, int height, double fps);
+	void OpenFile(QString name, int width, int height, double fps,int index);
 	void InitMain();
 	void ExitButtonClicked();
 	QString getFormattedTime(int time);
